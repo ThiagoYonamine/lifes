@@ -1,0 +1,24 @@
+{
+    "gameConfiguration": {
+        "player": {
+            "name": "Tatiana Flávia"
+        },
+        "supervisor": {
+            "name": "Patrícia Maria"
+        },
+        "date": "01/02/2018",
+        "games": [
+            {
+                "name": "Thiago's Buffet", 
+ 		"mechanic": {
+                    "description": "platform",
+                    "knowledge": "lorem ipsum",
+                },
+                "feedbacks": [{
+                    "id": "final_feedback",
+                    "message": "Muito bem!"
+                }]
+            }
+        ]
+    }
+}
