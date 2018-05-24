@@ -15,6 +15,7 @@ public class initConfig : MonoBehaviour {
 
 		//TODO split games 
 		Configuration.plataform = gc.gameConfiguration.games[0];
+		Configuration.puzzle = gc.gameConfiguration.games[0];
 	}
 }
 

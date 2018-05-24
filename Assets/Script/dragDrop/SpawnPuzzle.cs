@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-
-public class Spawn : MonoBehaviour {
+using UnityEngine.UI;
+ 
+public class SpawnPuzzle : MonoBehaviour {
 
 	public GameObject prefab;
-	private GameObject[] collectables;
-
-	private float timer;
-	private float respawnTime;
+	public GameObject prefabTarget;
 
 	private IEnumerator loadImage(int index, string url, int score){
 		WWW www = new WWW(url);
@@ -19,22 +17,27 @@ public class Spawn : MonoBehaviour {
 		// assign the downloaded image to sprite
 		www.LoadImageIntoTexture(texture);
 		Rect rec = new Rect(0, 0, texture.width, texture.height);
-		Sprite spriteToUse = Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), 10);
+		Sprite spriteToUse = Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), 1);
 		
-		//TODO find another way to do this
+		//Where player need to drop image
+		GameObject newPrefabTarget = PrefabUtility.InstantiatePrefab(prefabTarget) as GameObject;
+		newPrefabTarget.transform.position = new Vector2(Random.Range(-440, 416), Random.Range(-253, -148));
+		newPrefabTarget.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);
+	    newPrefabTarget.GetComponent<Image>().sprite = spriteToUse;
+		newPrefabTarget.name = "target_obj" + index.ToString();
+
+		//Initial image (draggable)
 		GameObject newPrefab = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
-		
-		newPrefab.GetComponent<SpriteRenderer>().sprite = spriteToUse;
-		newPrefab.GetComponent<Collectable>().score = score;
-		collectables[index] = newPrefab;
-		Debug.Log("Resource added"+ newPrefab.GetComponent<Collectable>().score);
+		newPrefab.transform.position = new Vector2(-425 + (index*(texture.width/2)), 243);
+		newPrefab.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);
+	    newPrefab.GetComponent<Image>().sprite = spriteToUse;
+		newPrefab.name = "obj" + index.ToString();
+
 		www.Dispose ();
 		www = null;
 	}
 
-	void Awake(){
-		int componentsLength = Configuration.plataform.mechanic.components.Length;
-		collectables = new GameObject[componentsLength];
+	void Start(){
 		int index = 0;
 		foreach(Component component in Configuration.plataform.mechanic.components){
 			Debug.Log("Loading component: " + component.id);
@@ -54,25 +57,6 @@ public class Spawn : MonoBehaviour {
 			}
 			index++;
 		}
-	 }
-	 
-	 void Start() {
-		 respawnTime = 5 ;
-         timer = Time.time + 3;
- 	}
-
-	// Update is called once per frame
-	void FixedUpdate () {	
-		if(timer < Time.time){
-			 Debug.Log("collectables:" + collectables.Length);
-			 //avoid null pointer
-			 if( collectables != null && collectables.Length > 0){
-				 int rand = Random.Range(0, collectables.Length);
-				 Debug.Log("random: "+ rand);
-			 	 Instantiate (collectables[rand],
-				 new Vector3(0,0,0), new Quaternion(0, 0 , 0, 0) );
-			 }
-			 timer = Time.time + respawnTime;
-		}
 	}
+	
 }

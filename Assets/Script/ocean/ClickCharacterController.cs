@@ -9,9 +9,7 @@ public class ClickCharacterController : MonoBehaviour {
 	
 	Vector3 clickScreenPosition;
 	Vector3 clickWorldPosition;
-
-	float slowingDistance = 7.0f;
-
+	
 	Vector3 desiredVelocity;
 
 	float maxSpeed = .9f;

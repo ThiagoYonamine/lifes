@@ -56,14 +56,14 @@ public class dragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
 	#endregion
 
 	void OnCollisionEnter2D(Collision2D colisao) {
-		string nameColide = "local_" + gameObject.name;
+		string nameColide = "target_" + gameObject.name;
 		if (colisao.gameObject.name == nameColide) {
-			
 			transform.position = colisao.transform.position;
-			//print (colisao.transform.position);
+			colisao.transform.position = transform.position;
+			Destroy(colisao.gameObject.GetComponent<Rigidbody2D>());
 			done = true;
 		}
-		//print ("aki2");
+
 	}
 		
 
