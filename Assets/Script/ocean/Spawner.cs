@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class Spawn : MonoBehaviour {
+public class Spawner : MonoBehaviour {
 
 	public GameObject prefab;
 	private GameObject[] collectables;
@@ -61,16 +61,16 @@ public class Spawn : MonoBehaviour {
          timer = Time.time + 3;
  	}
 
-	// Update is called once per frame
 	void FixedUpdate () {	
+		if(ControllerPlataform.isCompleted) return;
 		if(timer < Time.time){
-			 Debug.Log("collectables:" + collectables.Length);
 			 //avoid null pointer
 			 if( collectables != null && collectables.Length > 0){
 				 int rand = Random.Range(0, collectables.Length);
-				 Debug.Log("random: "+ rand);
+				 //TODO fix the map size
 			 	 Instantiate (collectables[rand],
-				 new Vector3(0,0,0), new Quaternion(0, 0 , 0, 0) );
+				 new Vector3(Random.Range(-100, 100), Random.Range(-100, 100),0),
+				 new Quaternion(0, 0 , 0, 0));
 			 }
 			 timer = Time.time + respawnTime;
 		}

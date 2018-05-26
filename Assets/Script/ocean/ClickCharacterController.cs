@@ -22,6 +22,7 @@ public class ClickCharacterController : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate(){
+		if(ControllerPlataform.isCompleted) return;
 		// Retrive left click input
 
 		if (Input.GetMouseButton(0)){

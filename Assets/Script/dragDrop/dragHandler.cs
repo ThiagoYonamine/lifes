@@ -62,6 +62,7 @@ public class dragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
 			colisao.transform.position = transform.position;
 			Destroy(colisao.gameObject.GetComponent<Rigidbody2D>());
 			done = true;
+			ControllerPuzzle.completePiece();
 		}
 
 	}

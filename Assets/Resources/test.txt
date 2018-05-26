@@ -16,7 +16,7 @@
                     "components": [{
                         "id": "chocolate_123",
                         "purpose": "Input",
-                        "score": -1,
+                        "score": -10,
                         "resources": [{
                             "url": "http://www.hazteveg.com/img/icons/food/strawberry-icon.png",
                             "name": "fail sound",
@@ -33,7 +33,7 @@
                     {
                         "id": "apple_123",
                         "purpose": "Input",
-                        "score": 1,
+                        "score": 10,
                         "resources": [{
                             "url": "http://www.hazteveg.com/app/webroot/img/icons/food/apple-icon.png",
                             "name": "Apple",
