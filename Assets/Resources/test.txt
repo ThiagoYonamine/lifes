@@ -1,10 +1,10 @@
 {
     "gameConfiguration": {
         "player": {
-            "name": "Tatiana Flávia"
+            "name": "Tatiana Flï¿½via"
         },
         "supervisor": {
-            "name": "Patrícia Maria"
+            "name": "Patrï¿½cia Maria"
         },
         "date": "01/02/2018",
         "games": [
@@ -18,27 +18,33 @@
                         "purpose": "Input",
                         "score": -10,
                         "resources": [{
-                            "url": "http://www.hazteveg.com/img/icons/food/strawberry-icon.png",
-                            "name": "fail sound",
-                            "license": "Public Domain",
-                            "type": "audio"
-                        },
-                        {
                             "url": "http://www.hazteveg.com/app/webroot/img/icons/food/conev.png",
                             "name": "chocolate",
                             "license": "Public Domain",
                             "type": "image"
+                        },
+                        {
+                            "url": "http://audiocidades.utopia.org.br/biblioteca/sons/sons_avisos/sino1.wav",
+                            "name": "fail sound",
+                            "license": "Public Domain",
+                            "type": "audio"
                         }]
                     },
                     {
                         "id": "apple_123",
                         "purpose": "Input",
                         "score": 10,
-                        "resources": [{
+                        "resources": [{      
                             "url": "http://www.hazteveg.com/app/webroot/img/icons/food/apple-icon.png",
                             "name": "Apple",
                             "license": "Public Domain",
                             "type": "image"
+                        },
+                        {
+                            "url": "http://audiocidades.utopia.org.br/biblioteca/sons/sons_avisos/sino1.wav",
+                            "name": "fail sound",
+                            "license": "Public Domain",
+                            "type": "audio"
                         }]
                     }]
                 },

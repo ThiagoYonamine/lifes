@@ -11,7 +11,14 @@ public class Spawner : MonoBehaviour {
 	private float timer;
 	private float respawnTime;
 
-	private IEnumerator loadImage(int index, string url, int score){
+	private void createInstance(int index, int score){
+		//TODO find another way to do this
+		GameObject newPrefab = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
+		newPrefab.GetComponent<Collectable>().score = score;
+		collectables[index] = newPrefab;
+	}
+
+	private IEnumerator loadImage(int index, string url){
 		WWW www = new WWW(url);
 		yield return www;
 		// Create a texture in DXT1 format
@@ -20,14 +27,20 @@ public class Spawner : MonoBehaviour {
 		www.LoadImageIntoTexture(texture);
 		Rect rec = new Rect(0, 0, texture.width, texture.height);
 		Sprite spriteToUse = Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), 10);
-		
-		//TODO find another way to do this
-		GameObject newPrefab = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
-		
-		newPrefab.GetComponent<SpriteRenderer>().sprite = spriteToUse;
-		newPrefab.GetComponent<Collectable>().score = score;
-		collectables[index] = newPrefab;
-		Debug.Log("Resource added"+ newPrefab.GetComponent<Collectable>().score);
+		collectables[index].GetComponent<SpriteRenderer>().sprite = spriteToUse;
+		Debug.Log("Resource added"+ collectables[index].GetComponent<Collectable>().score);
+		www.Dispose ();
+		www = null;
+	}
+
+	private IEnumerator loadSound(int index, string url){
+		WWW www = new WWW(url);
+		yield return www;
+
+		AudioClip wwwsound =  www.GetAudioClip(true,true);
+
+		collectables[index].GetComponent<Collectable>().sound = wwwsound;
+		Debug.Log("Sound added");
 		www.Dispose ();
 		www = null;
 	}
@@ -39,13 +52,14 @@ public class Spawner : MonoBehaviour {
 		foreach(Component component in Configuration.plataform.mechanic.components){
 			Debug.Log("Loading component: " + component.id);
 			foreach(Resource resource in component.resources){
+				createInstance(index, component.score);
 				Debug.Log("Loading resource: " + resource.name + " type: " + resource.type);
 				switch (resource.type){
 					case "image":
-						StartCoroutine(loadImage(index, resource.url, component.score));
+						StartCoroutine(loadImage(index, resource.url));
 						break;
 					case "audio":
-						//TODO not implemented yet
+						StartCoroutine(loadSound(index, resource.url));
 						break;
 					default:
 						Debug.Log("Resource type not defined:" + resource.type);
