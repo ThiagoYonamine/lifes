@@ -16,10 +16,14 @@ public class initConfig : MonoBehaviour {
 		//TODO split games 
 		Configuration.plataform = gc.gameConfiguration.games[0];
 		Configuration.puzzle = gc.gameConfiguration.games[0];
+		Configuration.player = gc.gameConfiguration.player;
+		Configuration.supervisor = gc.gameConfiguration.supervisor;
 	}
 }
 
 public static class Configuration{
+	public static Player player;
+	public static Supervisor supervisor;
 	public static Game plataform;
 	public static Game quiz;
 	public static Game puzzle;

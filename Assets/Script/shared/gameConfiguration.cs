@@ -55,54 +55,29 @@ public class GameConfiguration{
 }
 
 [System.Serializable]
-public  class SessionResponse{
+public class SessionResponse{
 	public GameConfiguration gameConfiguration;
 }
 
 [System.Serializable]
 public class GamePerformance{
-	Player player;
-	Supervisor supervisor;
-	String game;
-	DateTime date;
-	Performance performance;
+	public Player player;
+	public Supervisor supervisor;
+	public String game;
+	public DateTime date;
+	public Performance performance;
 }
 
 [System.Serializable]
 public class Performance{
-	float time;
-	int hits;
-    int fails;
-	int score;
-	int feelingRate;
-
-    public float Time { 
-		get { return time; }  
-		set { time = value; }
-	}
-
-    public int Hits { 
-		get { return hits; }  
-		set { hits = value; }
-	}
-
-    public int Fails { 
-		get { return fails; }  
-		set { fails = value; }
-	}
-
-    public int Score { 
-		get { return score; }  
-		set { score = value; }
-	}
-
-    public int FeelingRate { 
-		get { return feelingRate; }  
-		set { feelingRate = value; }
-	}
+	public float time;
+	public int hits;
+    public int fails;
+	public int score;
+	public int feelingRate;
 }
 
 [System.Serializable]
-public  class StopSessionRequest{
-	GamePerformance gamePerformance;
+public class StopSessionRequest{
+	public GamePerformance gamePerformance;
 }

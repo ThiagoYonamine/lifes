@@ -23,14 +23,14 @@ public class ControllerPlataform : MonoBehaviour {
 		score_txt.text = score.ToString();
 		textColor =  Color.yellow;
 		isCompleted = false;
-		performance.Hits = 0;
-		performance.Fails = 0;
-		performance.Time = 0;
+		performance.hits = 0;
+		performance.fails = 0;
+		performance.time = 0;
 		feedback.SetActive(false);
 	}
 
 	void FixedUpdate(){
-		performance.Time += Time.deltaTime;
+		performance.time += Time.deltaTime;
 		if (score != scoreTransition && !isCompleted) {
 			fontSize =  Mathf.Lerp(fontSize, 70, Time.deltaTime * 4);
 			score = Mathf.Lerp(score, scoreTransition, Time.deltaTime * 3);
@@ -55,7 +55,6 @@ public class ControllerPlataform : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D colisao) {
 		if (colisao.gameObject.tag == "food") {
 			Debug.Log("score: " + colisao.gameObject.GetComponent<Collectable>().score);
-			Debug.Log("SOUND");
 			source.PlayOneShot(colisao.gameObject.GetComponent<Collectable>().sound, 1);
 
 			int points = colisao.gameObject.GetComponent<Collectable>().score;
@@ -63,17 +62,21 @@ public class ControllerPlataform : MonoBehaviour {
 			if(points < 0){
 				textColor = Color.red;
 				fontSize = 95;
-				performance.Fails++;
+				performance.fails++;
 			} else {
 				textColor = Color.green;
-				performance.Hits++;
+				performance.hits++;
 			}
 			Destroy (colisao.gameObject);
 		} 
 	}
 
-	public void setFeelingRate(int points){
-		performance.FeelingRate = points;
-		Debug.Log("STOP: "+ performance.Time + " " + performance.FeelingRate + " " + performance.Fails);
+	public void setFeelingRate(int stars){
+		performance.feelingRate = stars;
+		performance.score = (int) score;
+		Debug.Log("STOP: "+ performance.time + " " + performance.feelingRate + " " + performance.fails);
+		
+		JsonUtils json = new JsonUtils();
+		json.sendResponse(performance, "plataform");
 	}
 }
