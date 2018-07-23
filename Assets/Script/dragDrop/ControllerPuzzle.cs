@@ -14,7 +14,7 @@ public class ControllerPuzzle : MonoBehaviour {
 	void Start () {
 		pieces = 0;
 		isCompleted = false;
-		totalPieces = Configuration.puzzle.mechanic.components.Length;
+		totalPieces = 1;//Configuration.puzzle.mechanic.components.Length;
 	}
 	
 	public static void completePiece(){
@@ -31,7 +31,7 @@ public class ControllerPuzzle : MonoBehaviour {
 		isCompleted= true;
 		GameObject feedbackMenu = PrefabUtility.InstantiatePrefab(feedback) as GameObject;
 		//TODO why do i have many massages? 
-		feedbackMenu.GetComponentInChildren<Text>().text = Configuration.plataform.feedbacks[0].message;
+		feedbackMenu.GetComponentInChildren<Text>().text = "boa lek";//Configuration.plataform.feedbacks[0].message;
 		feedbackMenu.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);
 	}
 }

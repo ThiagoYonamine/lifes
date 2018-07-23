@@ -12,25 +12,26 @@ public class ControllerPlataform : MonoBehaviour {
 	private float scoreTransition;
 	private float fontSize;
 	private Color textColor; 
-	private Performance performance;
+	private GameResult performance;
 	private AudioSource source;
 
 	void Start(){
+		
 		source = GetComponent<AudioSource>();
-		performance = new Performance();
+		performance = new GameResult();
 		scoreTransition = 10;
 		score = 10;
 		score_txt.text = score.ToString();
 		textColor =  Color.yellow;
 		isCompleted = false;
+		//set plataform id
+		performance.game = 1;
 		performance.hits = 0;
 		performance.fails = 0;
-		performance.time = 0;
 		feedback.SetActive(false);
 	}
 
 	void FixedUpdate(){
-		performance.time += Time.deltaTime;
 		if (score != scoreTransition && !isCompleted) {
 			fontSize =  Mathf.Lerp(fontSize, 70, Time.deltaTime * 4);
 			score = Mathf.Lerp(score, scoreTransition, Time.deltaTime * 3);
@@ -47,8 +48,7 @@ public class ControllerPlataform : MonoBehaviour {
 	void showFeedback(){
 		isCompleted= true;
 		score_txt.text = "";
-		//TODO why do i have many massages? 
-		feedback.GetComponentInChildren<Text>().text = Configuration.plataform.feedbacks[0].message;
+		//feedback.GetComponentInChildren<Text>().text = Configuration.plataform.feedbacks[0].message;
 		feedback.SetActive(true);
 	}
 
@@ -74,9 +74,8 @@ public class ControllerPlataform : MonoBehaviour {
 	public void setFeelingRate(int stars){
 		performance.feelingRate = stars;
 		performance.score = (int) score;
-		Debug.Log("STOP: "+ performance.time + " " + performance.feelingRate + " " + performance.fails);
-		
+
 		JsonUtils json = new JsonUtils();
-		json.sendResponse(performance, "plataform");
+		json.sendResponse(performance);
 	}
 }

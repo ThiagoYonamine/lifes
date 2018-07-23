@@ -1,0 +1,57 @@
+[{
+	"id": 1,
+	"game": 1,
+	"gameComponents": [{
+		"id": 7,
+		"resources": [{
+			"id": 7,
+			"content": "Olá, como vai ?",
+			"rights": "Copyrights",
+			"status": true,
+			"author": 1,
+			"resourceType": {
+				"id": 1,
+				"name": "Texto"
+			},
+			"institution": 1
+		}, {
+			"id": 6,
+			"content": "http://www.hazteveg.com/app/webroot/img/icons/food/conev.png",
+			"rights": "Copyrights",
+			"status": true,
+			"author": 1,
+			"resourceType": {
+				"id": 2,
+				"name": "Imagem"
+			},
+			"institution": 1
+		}, {
+			"id": 10,
+			"content": "http://audiocidades.utopia.org.br/biblioteca/sons/sons_avisos/sino1.wav",
+			"rights": "Copyrights",
+			"status": true,
+			"author": 1,
+			"resourceType": {
+				"id": 3,
+				"name": "Som"
+			},
+			"institution": 1
+		}],
+		"component": {
+			"id": 1,
+			"name": "Component Default",
+			"score": 10,
+			"purpose": "Componente para teste",
+			"tag": "teste",
+			"resourceTypes": [{
+					"id": 1,
+					"name": "Texto"
+				},
+				{
+					"id": 2,
+					"name": "Imagem"
+				}
+			]
+		}
+	}]
+}]

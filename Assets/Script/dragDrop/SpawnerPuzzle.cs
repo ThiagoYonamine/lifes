@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
  
-public class SpawnerPuzzle : MonoBehaviour {
-
+public class SpawnerPuzzle : MonoBehaviour {}
+/*
 	public GameObject prefab;
 	public GameObject prefabTarget;
 
@@ -60,3 +60,4 @@ public class SpawnerPuzzle : MonoBehaviour {
 	}
 	
 }
+*/

@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEditor;
 
 public class Spawner : MonoBehaviour {
 
 	public GameObject prefab;
+	public GameObject feedback;
 	private GameObject[] collectables;
 
 	private float timer;
@@ -38,31 +40,38 @@ public class Spawner : MonoBehaviour {
 		yield return www;
 
 		AudioClip wwwsound =  www.GetAudioClip(true,true);
-
 		collectables[index].GetComponent<Collectable>().sound = wwwsound;
 		Debug.Log("Sound added");
 		www.Dispose ();
 		www = null;
 	}
 
+	private void loadFeedback(string text){
+		feedback.GetComponentInChildren<Text>().text = text;
+	}
+
 	void Awake(){
-		int componentsLength = Configuration.plataform.mechanic.components.Length;
-		collectables = new GameObject[componentsLength];
+		//int componentsLength = Configuration.plataform.mechanic.components.Length;
+		GameComponent[] componets = Settings.plataform.gameComponents;
+		collectables = new GameObject[componets.Length];
 		int index = 0;
-		foreach(Component component in Configuration.plataform.mechanic.components){
+		foreach(GameComponent component in componets){
 			Debug.Log("Loading component: " + component.id);
 			foreach(Resource resource in component.resources){
-				createInstance(index, component.score);
-				Debug.Log("Loading resource: " + resource.name + " type: " + resource.type);
-				switch (resource.type){
-					case "image":
-						StartCoroutine(loadImage(index, resource.url));
+				createInstance(index, component.component.score);
+				Debug.Log("Loading resource: " + resource.id + " type: " + resource.resourceType.name);
+				switch (resource.resourceType.id){
+					case 1: // Text
+						loadFeedback(resource.content);
 						break;
-					case "audio":
-						StartCoroutine(loadSound(index, resource.url));
+					case 2: // Image
+						StartCoroutine(loadImage(index, resource.content));
+						break;
+					case 3: // Sound
+						StartCoroutine(loadSound(index, resource.content));
 						break;
 					default:
-						Debug.Log("Resource type not defined:" + resource.type);
+						Debug.Log("Resource type not defined:" + resource.resourceType.name);
 						break;
 				}
 			}

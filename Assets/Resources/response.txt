@@ -16,3 +16,29 @@
         }
     }
 }
+{
+    "gamePerformance": {
+        "player": {
+            "name": "Tatiana Fl�via"
+        },
+        "supervisor": {
+            "name": "Patr�cia Maria"
+        },
+        "game": "Thiago's Buffet",
+        "performance": {
+            "time": 28.92047119140625,
+            "hits": 3,
+            "fails": 2,
+            "score": 10,
+            "feelingRate": 4
+        }
+    }
+}
+{
+    "hits": 1,
+    "fails": 0,
+    "score": 10,
+    "feelingRate": 3,
+    "game": 1,
+    "player": 0
+}
