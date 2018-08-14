@@ -10,15 +10,22 @@ public class ControllerPuzzle : MonoBehaviour {
 	private static int pieces;
 	private int totalPieces;
 	public GameObject feedback;
+	private GameResult performance;
 
 	void Start () {
 		pieces = 0;
 		isCompleted = false;
-		totalPieces = 1;//Configuration.puzzle.mechanic.components.Length;
+		totalPieces = Settings.puzzle.gameComponents.Length;
+		performance = new GameResult();
+		//set plataform id
+		performance.game = 2;
+		performance.hits = 0;
+		performance.fails = 0;
 	}
 	
 	public static void completePiece(){
 		pieces++;
+		
 	}
 
 	void Update() {
@@ -29,9 +36,16 @@ public class ControllerPuzzle : MonoBehaviour {
 
 	void showFeedback(){
 		isCompleted= true;
-		GameObject feedbackMenu = PrefabUtility.InstantiatePrefab(feedback) as GameObject;
-		//TODO why do i have many massages? 
-		feedbackMenu.GetComponentInChildren<Text>().text = "boa lek";//Configuration.plataform.feedbacks[0].message;
-		feedbackMenu.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);
+		/*GameObject feedbackMenu = PrefabUtility.InstantiatePrefab(feedback) as GameObject;
+		feedbackMenu.GetComponentInChildren<Text>().text = "oi";//Settings.puzzle.gameComponents
+		feedbackMenu.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);*/
+		feedback.SetActive(true);
+
+	}
+	
+	public void setFeelingRate(int stars){
+		performance.feelingRate = stars;
+		JsonUtils jsonUtils = (new GameObject("jsonUtils")).AddComponent<JsonUtils>();
+		jsonUtils.sendResponse(performance);
 	}
 }

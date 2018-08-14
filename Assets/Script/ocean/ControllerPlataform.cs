@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 
+
 public class ControllerPlataform : MonoBehaviour {
 	public static bool isCompleted;
 	public Text score_txt;
@@ -16,7 +17,6 @@ public class ControllerPlataform : MonoBehaviour {
 	private AudioSource source;
 
 	void Start(){
-		
 		source = GetComponent<AudioSource>();
 		performance = new GameResult();
 		scoreTransition = 10;
@@ -74,8 +74,7 @@ public class ControllerPlataform : MonoBehaviour {
 	public void setFeelingRate(int stars){
 		performance.feelingRate = stars;
 		performance.score = (int) score;
-
-		JsonUtils json = new JsonUtils();
-		json.sendResponse(performance);
+		JsonUtils jsonUtils = (new GameObject("jsonUtils")).AddComponent<JsonUtils>();
+		jsonUtils.sendResponse(performance);
 	}
 }

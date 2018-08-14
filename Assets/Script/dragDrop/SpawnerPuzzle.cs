@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
- 
-public class SpawnerPuzzle : MonoBehaviour {}
-/*
+
+public class SpawnerPuzzle : MonoBehaviour {
 	public GameObject prefab;
 	public GameObject prefabTarget;
 
@@ -20,14 +19,14 @@ public class SpawnerPuzzle : MonoBehaviour {}
 		Sprite spriteToUse = Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), 1);
 		
 		//Where player need to drop image
-		GameObject newPrefabTarget = PrefabUtility.InstantiatePrefab(prefabTarget) as GameObject;
+		GameObject newPrefabTarget = Instantiate(prefabTarget) as GameObject;
 		newPrefabTarget.transform.position = new Vector2(Random.Range(-440, 416), Random.Range(-253, -148));
 		newPrefabTarget.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);
 	    newPrefabTarget.GetComponent<Image>().sprite = spriteToUse;
 		newPrefabTarget.name = "target_obj" + index.ToString();
 
 		//Initial image (draggable)
-		GameObject newPrefab = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
+		GameObject newPrefab = Instantiate(prefab) as GameObject;
 		newPrefab.transform.position = new Vector2(-425 + (index*(texture.width/2)), 243);
 		newPrefab.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);
 	    newPrefab.GetComponent<Image>().sprite = spriteToUse;
@@ -39,19 +38,21 @@ public class SpawnerPuzzle : MonoBehaviour {}
 
 	void Start(){
 		int index = 0;
-		foreach(Component component in Configuration.plataform.mechanic.components){
+		GameComponent[] componets = Settings.puzzle.gameComponents;
+		foreach(GameComponent component in componets){
 			Debug.Log("Loading component: " + component.id);
 			foreach(Resource resource in component.resources){
-				Debug.Log("Loading resource: " + resource.name + " type: " + resource.type);
-				switch (resource.type){
-					case "image":
-						StartCoroutine(loadImage(index, resource.url, component.score));
+				Debug.Log("Loading resource: " + component.component.name);
+				switch (resource.resourceType.id){
+					case 1: // Text
 						break;
-					case "audio":
-						//TODO not implemented yet
+					case 2: // Image
+						StartCoroutine(loadImage(index, resource.content, component.component.score));
+						break;
+					case 3: // Sound
 						break;
 					default:
-						Debug.Log("Resource type not defined:" + resource.type);
+						Debug.Log("Resource type not defined:" + resource.resourceType.name);
 						break;
 				}
 			}
@@ -60,4 +61,3 @@ public class SpawnerPuzzle : MonoBehaviour {}
 	}
 	
 }
-*/

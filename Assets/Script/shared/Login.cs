@@ -7,18 +7,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class JsonUtils : MonoBehaviour {
-	private string url = "http://lifes.dc.ufscar.br/hcgd-backend-teste/project/gamesession";
+public class Login : MonoBehaviour {
 
-	public void sendResponse(GameResult performance){
-		performance.player = Settings.userId;
-		string resp = JsonUtility.ToJson(performance, true);
-		Debug.Log(resp);
-		StartCoroutine(Post(url, resp));
-		SceneManager.LoadScene ("Menu", LoadSceneMode.Single);
-	}
+	public InputField username;
+	public InputField password;
+	public string results;
+	private string url = "http://lifes.dc.ufscar.br/hcgd-backend-teste/user/login/";
 
-	IEnumerator Post(string url, string bodyJsonString) {
+	public void Submit() {
+		LoginRequest loginRequest = new LoginRequest();
+		loginRequest.username = "norbteste";
+		loginRequest.password = "senha123";
+		Debug.Log("submit " + loginRequest.ToString());
+		String json = "{\"username\": \"norbteste\", \"password\": \"senha123\"}";
+        StartCoroutine(Post(url, json));
+		
+		//StartCoroutine(Post(url, obj));
+		//StartCoroutine(Upload());
+    }
+
+ 	IEnumerator Post(string url, string bodyJsonString) {
         var request = new UnityWebRequest(url, "POST");
         byte[] bodyRaw = Encoding.UTF8.GetBytes(bodyJsonString);
         request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
@@ -26,7 +34,7 @@ public class JsonUtils : MonoBehaviour {
         request.SetRequestHeader("Content-Type", "application/json");
  
         yield return request.SendWebRequest();
- /* 
+ 
         Debug.Log("Status Code: " + request.responseCode);
 		StringBuilder sb = new StringBuilder();
 		foreach (System.Collections.Generic.KeyValuePair<string, string> dict in request.GetResponseHeaders()) {
@@ -38,6 +46,16 @@ public class JsonUtils : MonoBehaviour {
 		// Print Body
 		Debug.Log(request.downloadHandler.text.ToString());
 		JSONObject json = new JSONObject(request.downloadHandler.text.ToString());
-		*/
+	
+		
+
+		if(json["user"]["player_datas"][0]["id"] != null){
+			float id = json["user"]["player_datas"][0]["id"].n;
+			Settings.userId = Convert.ToInt64(id);
+			Debug.Log(Settings.userId);
+			SceneManager.LoadScene ("menu", LoadSceneMode.Single);
+		}
     }
+
+
 }

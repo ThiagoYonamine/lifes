@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour {
 
 	private void createInstance(int index, int score){
 		//TODO find another way to do this
-		GameObject newPrefab = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
+		GameObject newPrefab = Instantiate(prefab) as GameObject;
 		newPrefab.GetComponent<Collectable>().score = score;
 		collectables[index] = newPrefab;
 	}
