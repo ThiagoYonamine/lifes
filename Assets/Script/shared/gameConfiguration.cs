@@ -140,7 +140,7 @@ public class GameComponent{
 	public Resource[] resources;
 	public Component component;
 }
-
+ 
 [System.Serializable]
 public class Configuration{
 	public long id;

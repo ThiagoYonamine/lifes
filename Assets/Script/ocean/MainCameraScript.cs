@@ -14,11 +14,15 @@ public class MainCameraScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate() {
+		Vector3 desiredPosition = player.transform.position + offset;
 		//X limits
-		if (player.transform.position.x < 410 && player.transform.position.x > -325 ) {
-			Vector3 desiredPosition = player.transform.position + offset;
-			transform.position = Vector3.Lerp (transform.position, desiredPosition, Time.deltaTime * cameraSpeed);
+		if (player.transform.position.x > 104 || player.transform.position.x < -126 ) {
+			desiredPosition.x = transform.position.x;
 		}
-		//TODO Y limits
+		 
+		if (player.transform.position.y > 54 || player.transform.position.y < -55 ) {
+			desiredPosition.y = transform.position.y;
+		}
+		transform.position = Vector3.Lerp (transform.position, desiredPosition, Time.deltaTime * cameraSpeed);
 	}
 }

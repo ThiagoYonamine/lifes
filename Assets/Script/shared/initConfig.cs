@@ -12,8 +12,8 @@ public class initConfig : MonoBehaviour {
 	private string url = "http://lifes.dc.ufscar.br/hcgd-backend-teste/project/playergames/?user_id=";
 	// Use this for initialization
 	void Start () {
-		
-		/*string path = "Assets/Resources/test3.txt";
+		/* 
+		string path = "Assets/Resources/test3.txt";
 		
 		StreamReader reader = new StreamReader(path); 
 		string json = reader.ReadToEnd();
@@ -21,7 +21,6 @@ public class initConfig : MonoBehaviour {
 		//SessionResponse gc = JsonUtility.FromJson<SessionResponse>(json);
  		string JSONToParse = "{\"configurations\":" + json + "}";
 		*/
-		
 		url = url + Settings.userId;
 		Debug.Log("GET: " + url + Settings.userId);
 		StartCoroutine(Get(url));
@@ -41,11 +40,18 @@ public class initConfig : MonoBehaviour {
 				log.text = www.error;
             }
             else {
+						string path = "Assets/Resources/test3.txt";
+		
+		StreamReader reader = new StreamReader(path); 
+		string json = reader.ReadToEnd();
+		reader.Close();
+		//SessionResponse gc = JsonUtility.FromJson<SessionResponse>(json);
+ 		string JSONToParse = "{\"configurations\":" + json + "}";
                 // Show results as text
                 Debug.Log(www.downloadHandler.text);
 				log.text = www.downloadHandler.text;
 				string response = www.downloadHandler.text;
-				string JSONToParse = "{\"configurations\":" + response + "}";
+				//string JSONToParse = "{\"configurations\":" + response + "}";
 				//string objResponse =  response.Substring(1, response.Length-2);
 				//Debug.Log(objResponse);
 				Response gc= JsonUtility.FromJson<Response>(JSONToParse);

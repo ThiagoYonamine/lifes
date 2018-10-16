@@ -12,6 +12,7 @@ public class ClickCharacterController : MonoBehaviour {
 	
 	Vector3 desiredVelocity;
 
+	float mLocalScale = 13;
 	float maxSpeed = .9f;
 	private float angle;
 
@@ -44,10 +45,10 @@ public class ClickCharacterController : MonoBehaviour {
 		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 	
 		if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < transform.position.x){
-			transform.localScale = new Vector3(1, -1, 1);
+			transform.localScale = new Vector3(mLocalScale, -mLocalScale, mLocalScale);
 		}
-		else{
-			transform.localScale = new Vector3(1, 1, 1);
+		else {
+			transform.localScale = new Vector3(mLocalScale, mLocalScale, mLocalScale);
 		}
 	}
 }
