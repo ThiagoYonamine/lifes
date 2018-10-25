@@ -8,4 +8,9 @@ public class comandosBasicos : MonoBehaviour {
 		SceneManager.LoadScene (nome, LoadSceneMode.Single);
 	}
 
+	public void quit(){
+		  Application.Quit();
+	}
+
+
 }

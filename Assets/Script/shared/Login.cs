@@ -53,7 +53,7 @@ public class Login : MonoBehaviour {
 			float id = json["user"]["player_datas"][0]["id"].n;
 			Settings.userId = Convert.ToInt64(id);
 			Debug.Log(Settings.userId);
-			SceneManager.LoadScene ("menu", LoadSceneMode.Single);
+			SceneManager.LoadScene ("menuPrincipal", LoadSceneMode.Single);
 		}
     }
 
