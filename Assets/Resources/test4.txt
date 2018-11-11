@@ -1,0 +1,116 @@
+[
+    {
+        "id": 119,
+        "game": {
+            "id": 1,
+            "name": "Fundo do mar",
+            "components": [
+                {
+                    "id": 2,
+                    "name": "Personagem Principal",
+                    "purpose": "Personagem Principal",
+                    "tag": "personagem",
+                    "resourceTypes": [
+                        {
+                            "id": 1,
+                            "name": "Texto"
+                        },
+                        {
+                            "id": 2,
+                            "name": "Imagem"
+                        },
+                        {
+                            "id": 3,
+                            "name": "Áudio"
+                        }
+                    ],
+                    "resources": [
+                        {
+                            "id": 18,
+                            "content": "https://organicsnewsbrasil.com.br/wp-content/uploads/2017/09/test-drive.jpeg",
+                            "rights": "Copyrights",
+                            "status": true,
+                            "resourceType": {
+                                "id": 2,
+                                "name": "Imagem"
+                            },
+                            "related": null,
+                            "role": "object",
+                            "score": 1
+                        },
+                        {
+                            "id": 19,
+                            "content": "https://www.w3schools.com/html/horse.ogg",
+                            "rights": "Copyrights",
+                            "status": true,
+                            "resourceType": {
+                                "id": 3,
+                                "name": "Áudio"
+                            },
+                            "related": null,
+                            "role": "object",
+                            "score": 1
+                        },
+                        {
+                            "id": 20,
+                            "content": "Olá, como vai ?",
+                            "rights": "Copyrights",
+                            "status": true,
+                            "resourceType": {
+                                "id": 1,
+                                "name": "Texto"
+                            },
+                            "related": null,
+                            "role": "object",
+                            "score": 1
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "name": "Obstáculo",
+                    "purpose": "Obstáculo",
+                    "tag": "obstaculo",
+                    "resourceTypes": [
+                        {
+                            "id": 2,
+                            "name": "Imagem"
+                        },
+                        {
+                            "id": 3,
+                            "name": "Áudio"
+                        }
+                    ],
+                    "resources": [
+                        {
+                            "id": 21,
+                            "content": "https://organicsnewsbrasil.com.br/wp-content/uploads/2017/09/test-drive.jpeg",
+                            "rights": "Copyrights",
+                            "status": true,
+                            "resourceType": {
+                                "id": 2,
+                                "name": "Imagem"
+                            },
+                            "related": null,
+                            "role": "object",
+                            "score": -1
+                        },
+                        {
+                            "id": 22,
+                            "content": "https://www.w3schools.com/html/horse.ogg",
+                            "rights": "Copyrights",
+                            "status": true,
+                            "resourceType": {
+                                "id": 3,
+                                "name": "Áudio"
+                            },
+                            "related": null,
+                            "role": "object",
+                            "score": 0
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]

@@ -49,16 +49,45 @@ public class Spawner : MonoBehaviour {
 	private void loadFeedback(string text){
 		feedback.GetComponentInChildren<Text>().text = text;
 	}
-
+/*
 	void Awake(){
 		//int componentsLength = Configuration.plataform.mechanic.components.Length;
-		GameComponent[] componets = Settings.plataform.gameComponents;
+		
+		GameComponent[] componets = Settings.plataform.game.components.Length;
 		collectables = new GameObject[componets.Length];
 		int index = 0;
 		foreach(GameComponent component in componets){
 			Debug.Log("Loading component: " + component.id);
 			foreach(Resource resource in component.resources){
 				createInstance(index, component.component.score);
+				Debug.Log("Loading resource: " + resource.id + " type: " + resource.resourceType.name);
+				switch (resource.resourceType.id){
+					case 1: // Text
+						loadFeedback(resource.content);
+						break;
+					case 2: // Image
+						StartCoroutine(loadImage(index, resource.content));
+						break;
+					case 3: // Sound
+						StartCoroutine(loadSound(index, resource.content));
+						break;
+					default:
+						Debug.Log("Resource type not defined:" + resource.resourceType.name);
+						break;
+				}
+			}
+			index++;
+		}
+	 }*/
+
+	 void Awake(){
+		Component[] componets = Settings.plataform.game.components;
+		collectables = new GameObject[componets.Length];
+		int index = 0;
+		foreach(Component component in componets){
+			Debug.Log("Loading component: " + component.name);
+			foreach(Resource resource in component.resources){
+				createInstance(index, resource.score);
 				Debug.Log("Loading resource: " + resource.id + " type: " + resource.resourceType.name);
 				switch (resource.resourceType.id){
 					case 1: // Text

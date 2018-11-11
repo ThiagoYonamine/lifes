@@ -9,11 +9,14 @@ public class dragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
 	Vector3 startPosition;
 	private Vector3 screenPoint;
 	private bool done;
+	private AudioSource source;
 
-	void start(){
+
+	void Awake(){
+		source = GetComponent<AudioSource>();
 		done = false;
-
 	}
+
 	#region IBeginDragHandler implementation
 
 	public void OnBeginDrag (PointerEventData eventData)
@@ -60,6 +63,7 @@ public class dragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
 		if (colisao.gameObject.name == nameColide) {
 			transform.position = colisao.transform.position;
 			colisao.transform.position = transform.position;
+			source.PlayOneShot(this.GetComponent<Collectable>().sound, 1);
 			Destroy(colisao.gameObject.GetComponent<Rigidbody2D>());
 			done = true;
 			ControllerPuzzle.completePiece();

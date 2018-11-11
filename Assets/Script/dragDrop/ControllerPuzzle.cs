@@ -15,7 +15,7 @@ public class ControllerPuzzle : MonoBehaviour {
 	void Start () {
 		pieces = 0;
 		isCompleted = false;
-		totalPieces = Settings.puzzle.gameComponents.Length;
+		totalPieces = Settings.puzzle.game.components.Length;
 		performance = new GameResult();
 		//set plataform id
 		performance.game = 2;

@@ -1,0 +1,179 @@
+[
+    {
+        "id": 118,
+        "game": {
+            "id": 4,
+            "name": "Show do milhão",
+            "components": [
+                {
+                    "id": 5,
+                    "name": "Questão",
+                    "purpose": "Perguntar",
+                    "tag": "perguntas",
+                    "resourceTypes": [
+                        {
+                            "id": 1,
+                            "name": "Texto"
+                        }
+                    ],
+                    "resources": [
+                        {
+                            "id": 8,
+                            "content": "Quem descobriu o Brasil?",
+                            "rights": "copyrights",
+                            "status": true,
+                            "resourceType": {
+                                "id": 1,
+                                "name": "Texto"
+                            },
+                            "related": null,
+                            "role": "problem",
+                            "score": 1
+                        },
+                        {
+                            "id": 9,
+                            "content": "João Paulo II",
+                            "rights": "copyrights",
+                            "status": true,
+                            "resourceType": {
+                                "id": 1,
+                                "name": "Texto"
+                            },
+                            "related": {
+                                "id": 7,
+                                "content": "Quem descobriu o Brasil?"
+                            },
+                            "role": "option",
+                            "score": 1
+                        },
+                        {
+                            "id": 10,
+                            "content": "Getúlio Vargas",
+                            "rights": "copyrights",
+                            "status": true,
+                            "resourceType": {
+                                "id": 1,
+                                "name": "Texto"
+                            },
+                            "related": {
+                                "id": 7,
+                                "content": "Quem descobriu o Brasil?"
+                            },
+                            "role": "option",
+                            "score": 1
+                        },
+                        {
+                            "id": 11,
+                            "content": "Chitãozinho & Xororó",
+                            "rights": "copyrights",
+                            "status": true,
+                            "resourceType": {
+                                "id": 1,
+                                "name": "Texto"
+                            },
+                            "related": {
+                                "id": 7,
+                                "content": "Quem descobriu o Brasil?"
+                            },
+                            "role": "option",
+                            "score": 1
+                        },
+                        {
+                            "id": 12,
+                            "content": "Pedro Álvares Cabral",
+                            "rights": "copyrights",
+                            "status": true,
+                            "resourceType": {
+                                "id": 1,
+                                "name": "Texto"
+                            },
+                            "related": {
+                                "id": 7,
+                                "content": "Quem descobriu o Brasil?"
+                            },
+                            "role": "answer",
+                            "score": 1
+                        },
+                        {
+                            "id": 13,
+                            "content": "Azul com amarelo é...",
+                            "rights": "copyrights",
+                            "status": true,
+                            "resourceType": {
+                                "id": 1,
+                                "name": "Texto"
+                            },
+                            "related": null,
+                            "role": "problem",
+                            "score": 1
+                        },
+                        {
+                            "id": 14,
+                            "content": "Roxo",
+                            "rights": "copyrights",
+                            "status": true,
+                            "resourceType": {
+                                "id": 1,
+                                "name": "Texto"
+                            },
+                            "related": {
+                                "id": 12,
+                                "content": "Azul com amarelo é..."
+                            },
+                            "role": "option",
+                            "score": 1
+                        },
+                        {
+                            "id": 15,
+                            "content": "Verde",
+                            "rights": "copyrights",
+                            "status": true,
+                            "resourceType": {
+                                "id": 1,
+                                "name": "Texto"
+                            },
+                            "related": {
+                                "id": 12,
+                                "content": "Azul com amarelo é..."
+                            },
+                            "role": "answer",
+                            "score": 1
+                        },
+                        {
+                            "id": 16,
+                            "content": "Vermelho",
+                            "rights": "copyrights",
+                            "status": true,
+                            "resourceType": {
+                                "id": 1,
+                                "name": "Texto"
+                            },
+                            "related": {
+                                "id": 12,
+                                "content": "Azul com amarelo é..."
+                            },
+                            "role": "option",
+                            "score": 1
+                        },
+                        {
+                            "id": 17,
+                            "content": "Brega",
+                            "rights": "copyrights",
+                            "status": true,
+                            "resourceType": {
+                                "id": 1,
+                                "name": "Texto"
+                            },
+                            "related": {
+                                "id": 12,
+                                "content": "Azul com amarelo é..."
+                            },
+                            "role": "option",
+                            "score": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]

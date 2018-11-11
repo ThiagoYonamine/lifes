@@ -16,7 +16,8 @@
 			"institution": 1
 		}, {
 			"id": 6,
-			"content": "http://www.hazteveg.com/app/webroot/img/icons/food/conev.png",
+			"content": "http://www.hazteveg.com/app/webroot/img/icons/food/strawberry-icon.png",
+			
 			"rights": "Copyrights",
 			"status": true,
 			"author": 1,

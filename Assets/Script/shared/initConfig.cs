@@ -41,22 +41,22 @@ public class initConfig : MonoBehaviour {
             }
             else {
 
-		string path = "Assets/Resources/test3.txt";
+		string path = "Assets/Resources/test5.txt";
 		
 		StreamReader reader = new StreamReader(path); 
 		string json = reader.ReadToEnd();
 		reader.Close();
 
 		// Test Local
- 		//string JSONToParse = "{\"configurations\":" + json + "}";
+ 		string JSONToParse = "{\"configurations\":" + json + "}";
 
                 // Show results as text
-                Debug.Log(www.downloadHandler.text);
+               // Debug.Log(www.downloadHandler.text);
 				log.text = www.downloadHandler.text;
 				string response = www.downloadHandler.text;
 
 				//Test Request
-				string JSONToParse = "{\"configurations\":" + response + "}";
+			    //string JSONToParse = "{\"configurations\":" + response + "}";
 				//string objResponse =  response.Substring(1, response.Length-2);
 
 				Response gc= JsonUtility.FromJson<Response>(JSONToParse);
@@ -64,7 +64,6 @@ public class initConfig : MonoBehaviour {
 				//TODO split games 
 				Settings.plataform = gc.configurations[0];
 				Settings.puzzle = gc.configurations[0];
-				Debug.Log("FOI: "+ gc.configurations[0]);
             }
         }
     }
