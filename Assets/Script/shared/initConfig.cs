@@ -10,25 +10,18 @@ public class initConfig : MonoBehaviour {
 
 	public Text log;
 	private string url = "http://lifes.dc.ufscar.br/hcgd-backend-teste/project/playergames/?user_id=";
-	// Use this for initialization
+
+	public GameObject gameQuiz;
+	public GameObject gamePuzzle;
+	public GameObject gamePlataform;
+
 	void Start () {
-		/* 
-		string path = "Assets/Resources/test3.txt";
-		
-		StreamReader reader = new StreamReader(path); 
-		string json = reader.ReadToEnd();
-		reader.Close();
-		//SessionResponse gc = JsonUtility.FromJson<SessionResponse>(json);
- 		string JSONToParse = "{\"configurations\":" + json + "}";
-		*/
+		gameQuiz.SetActive(false);
+		gamePuzzle.SetActive(false);
+		gamePlataform.SetActive(false);
 		url = url + Settings.userId;
 		Debug.Log("GET: " + url + Settings.userId);
 		StartCoroutine(Get(url));
-	
-		//Configuration.plataform = gc.gameConfiguration.games[0];
-		//Configuration.puzzle = gc.gameConfiguration.games[0];
-		///Configuration.player = gc.gameConfiguration.player;
-		//Configuration.supervisor = gc.gameConfiguration.supervisor;
 	}
 
 	IEnumerator Get(string url) {
@@ -36,58 +29,53 @@ public class initConfig : MonoBehaviour {
             yield return www.SendWebRequest();
 
             if (www.isNetworkError || www.isHttpError)  {
-                Debug.Log(www.error);
 				log.text = www.error;
+				Debug.Log(www.error);
             }
-            else {
-
-		string path = "Assets/Resources/test5.txt";
-		
+           
+		/*  TEST LOCAL */
+		string path = "Assets/Resources/test4.txt";
 		StreamReader reader = new StreamReader(path); 
 		string json = reader.ReadToEnd();
 		reader.Close();
+		string JSONToParse = "{\"configurations\":" + json + "}";
+		/*################*/
 
-		// Test Local
- 		string JSONToParse = "{\"configurations\":" + json + "}";
-
-                // Show results as text
-               // Debug.Log(www.downloadHandler.text);
-				log.text = www.downloadHandler.text;
-				string response = www.downloadHandler.text;
-
-				//Test Request
-			    //string JSONToParse = "{\"configurations\":" + response + "}";
-				//string objResponse =  response.Substring(1, response.Length-2);
-
+        /* REPONSE FROM SERVER */
+		//log.text = www.downloadHandler.text;
+		//string response = www.downloadHandler.text;
+		//Test Request
+		//string JSONToParse = "{\"configurations\":" + response + "}";
+        /* ################ */
+				Debug.Log(JSONToParse);
 				Response gc= JsonUtility.FromJson<Response>(JSONToParse);
 
-				//TODO split games 
-				Settings.plataform = gc.configurations[0];
-				Settings.puzzle = gc.configurations[0];
-            }
+				for(int i=0; i<gc.configurations.Length; i++) {
+					Debug.Log("init: " + gc.configurations[i].game.name);
+					switch (gc.configurations[i].game.name) {	
+						case "Perguntas":
+							Settings.quiz = gc.configurations[i];
+							gameQuiz.SetActive(true);
+							break;
+						case "Encaixe":
+							Settings.puzzle = gc.configurations[1];
+							gamePuzzle.SetActive(true);
+							break;
+						case "Coleta":
+							Settings.plataform = gc.configurations[2];
+							gamePlataform.SetActive(true);
+							break;
+					}
+				}
         }
     }
 }
-/*
-public static class Configuration{
-	public static Player player;
-	public static Supervisor supervisor;
-	public static Game plataform;
-	public static Game quiz;
-	public static Game puzzle;
-	public static LoginWrapper login;
-	public static Configuration plataform;
-}
-*/
+
 
 public static class Settings{
-	/*public static Player player;
-	public static Supervisor supervisor;
-	public static Game plataform;
-	public static Game quiz;
-	public static Game puzzle;*/
 	public static long userId;
 	public static LoginWrapper login;
 	public static Configuration plataform;
 	public static Configuration puzzle;
+	public static Configuration quiz;
 }

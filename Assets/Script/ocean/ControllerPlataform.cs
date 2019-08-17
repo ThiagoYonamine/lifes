@@ -15,6 +15,7 @@ public class ControllerPlataform : MonoBehaviour {
 	private Color textColor; 
 	private GameResult performance;
 	private AudioSource source;
+	private int MAX_SCORE = 30;
 
 	void Start(){
 		source = GetComponent<AudioSource>();
@@ -40,7 +41,7 @@ public class ControllerPlataform : MonoBehaviour {
 			score_txt.fontSize = Mathf.RoundToInt(fontSize);
 			score_txt.color =  textColor;
 		}
-		if(score > 10 && !isCompleted){
+		if(score > MAX_SCORE && !isCompleted){
 			showFeedback();
 		}
 	}

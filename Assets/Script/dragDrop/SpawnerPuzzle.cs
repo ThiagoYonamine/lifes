@@ -55,31 +55,6 @@ public class SpawnerPuzzle : MonoBehaviour {
 		www = null;
 	}
 
-/*
-	void Start(){
-		int index = 0;
-		GameComponent[] componets = Settings.puzzle.gameComponents;
-		foreach(GameComponent component in componets){
-			Debug.Log("Loading component: " + component.id);
-			foreach(Resource resource in component.resources){
-				Debug.Log("Loading resource: " + component.component.name);
-				switch (resource.resourceType.id){
-					case 1: // Text
-						break;
-					case 2: // Image
-						StartCoroutine(loadImage(index, resource.content, component.component.score));
-						break;
-					case 3: // Sound
-						break;
-					default:
-						Debug.Log("Resource type not defined:" + resource.resourceType.name);
-						break;
-				}
-			}
-			index++;
-		}
-	}*/
-
 	void Start() {
 		int index = 0;
 		Component[] componets = Settings.puzzle.game.components;
@@ -89,13 +64,13 @@ public class SpawnerPuzzle : MonoBehaviour {
 			foreach(Resource resource in component.resources){
 				createInstance(index, resource.score);
 				Debug.Log("Loading resource: " + resource.score);
-				switch (resource.resourceType.id){
-					case 1: // Text
+				switch (resource.resourceType.name){
+					case "Texto": // Text
 						break;
-					case 2: // Image
+					case "Imagem": // Image
 						StartCoroutine(loadImage(index, resource.content));
 						break;
-					case 3: // Sound
+					case "Áudio": // Sound
 						StartCoroutine(loadSound(index, resource.content));
 						break;
 					default:

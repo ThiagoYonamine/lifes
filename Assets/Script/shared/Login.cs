@@ -8,25 +8,22 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Login : MonoBehaviour {
-
 	public InputField username;
 	public InputField password;
-	public string results;
+	public Text results;
 	private string url = "http://lifes.dc.ufscar.br/hcgd-backend-teste/user/login/";
 
 	public void Submit() {
 		LoginRequest loginRequest = new LoginRequest();
-		loginRequest.username = "norbteste";
-		loginRequest.password = "senha123";
-		Debug.Log("submit " + loginRequest.ToString());
-		String json = "{\"username\": \"norbteste\", \"password\": \"senha123\"}";
-        StartCoroutine(Post(url, json));
-		
-		//StartCoroutine(Post(url, obj));
-		//StartCoroutine(Upload());
+		loginRequest.username = username.ToString(); //"monica";
+		loginRequest.password =  password.ToString(); //"senha123";
+
+		string json = "{\"username\": \""+ username.text +"\", \"password\": \""+password.text+"\"}";
+		Debug.Log(json);
+		StartCoroutine(Post(url, json));
     }
 
- 	IEnumerator Post(string url, string bodyJsonString) {
+    IEnumerator Post(string url, string bodyJsonString) {
         var request = new UnityWebRequest(url, "POST");
         byte[] bodyRaw = Encoding.UTF8.GetBytes(bodyJsonString);
         request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
@@ -47,14 +44,16 @@ public class Login : MonoBehaviour {
 		Debug.Log(request.downloadHandler.text.ToString());
 		JSONObject json = new JSONObject(request.downloadHandler.text.ToString());
 	
-		
-
-		if(json["user"]["player_datas"][0]["id"] != null){
-			float id = json["user"]["player_datas"][0]["id"].n;
-			Settings.userId = Convert.ToInt64(id);
-			Debug.Log(Settings.userId);
-			SceneManager.LoadScene ("menuPrincipal", LoadSceneMode.Single);
-		}
+		if(request.responseCode == 200){
+			if(json["user"]["player_datas"][0]["id"] != null){
+				float id = json["user"]["player_datas"][0]["id"].n;
+				Settings.userId = Convert.ToInt64(id);
+				Debug.Log(Settings.userId);
+				SceneManager.LoadScene ("menuPrincipal", LoadSceneMode.Single);
+			}
+	 	} else {
+			 results.text = "Usuário ou senha incorretos"; 
+		 }
     }
 
 

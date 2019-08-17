@@ -89,14 +89,14 @@ public class Spawner : MonoBehaviour {
 			foreach(Resource resource in component.resources){
 				createInstance(index, resource.score);
 				Debug.Log("Loading resource: " + resource.id + " type: " + resource.resourceType.name);
-				switch (resource.resourceType.id){
-					case 1: // Text
+				switch (resource.resourceType.name){
+					case "Texto": // Text
 						loadFeedback(resource.content);
 						break;
-					case 2: // Image
+					case "Imagem": // Image
 						StartCoroutine(loadImage(index, resource.content));
 						break;
-					case 3: // Sound
+					case "Áudio": // Sound
 						StartCoroutine(loadSound(index, resource.content));
 						break;
 					default:
